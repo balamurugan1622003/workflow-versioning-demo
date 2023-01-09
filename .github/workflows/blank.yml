@@ -30,4 +30,4 @@ jobs:
         
       # If triggered by Push
       - name: Minor Update
-        run: curl www.google.com
+        run: curl "www.google.com"
