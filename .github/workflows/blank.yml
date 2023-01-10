@@ -11,23 +11,16 @@ on:
     # branches: [ "main" ]
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  write_artifact:
+    name: Versioning workflow run
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # If triggered by PR
-      # - if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
-      # - name: Major update
-        # run: echo PR
-        
-      # If triggered by Push
-      - name: Minor Update
-        run: curl "www.google.com"
+      - shell: bash
+        run: |
+          echo 1 > version.txt
+      - name: Upload version number
+        uses: actions/upload-artifact@v3
+        with:
+          name: version
+          path: version.txt
