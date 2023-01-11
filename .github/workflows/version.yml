@@ -27,3 +27,9 @@ jobs:
 
       - name: Echo version of workflow run
         run: echo ${{ vars.VERSION }}
+        
+      - name: Split major and minor version numbers
+        run: split=($(echo $vars.VERSION | tr "." "\n"))
+      
+      - name: Update version of workflow run
+        run: echo "VERSION=$(echo `expr ${split[0]} + 1`)" >> ${{ vars }}
