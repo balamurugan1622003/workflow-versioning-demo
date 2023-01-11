@@ -8,8 +8,8 @@ on:
     types: [closed]
 
 jobs:
-  dev_to_main:
-    if: ${{ (github.event.pull_request.merged) && (github.head_ref == 'dev') && (github.base_ref == 'main') }}
+  release_to_main:
+    if: ${{ (github.event.pull_request.merged) && (github.head_ref == 'release') && (github.base_ref == 'main') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +34,7 @@ jobs:
             -d '{"name":"MAIN_WORKFLOW_VERSION","value":"'${{ env.updated_version }}'"}'
   
   others_to_main:
-    if: ${{ (github.event.pull_request.merged) && (github.head_ref != 'dev') && (github.base_ref == 'main')}}
+    if: ${{ (github.event.pull_request.merged) && (github.head_ref != 'release') && (github.base_ref == 'main')}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -84,7 +84,7 @@ jobs:
             -d '{"name":"RELEASE_WORKFLOW_VERSION","value":"'${{ env.updated_version }}'"}'
   
   others_to_release:
-    if: ${{ (github.event.pull_request.merged) && (github.head_ref != 'dev') && (github.base_ref == 'main')}}
+    if: ${{ (github.event.pull_request.merged) && (github.head_ref != 'dev') && (github.base_ref == 'release')}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
