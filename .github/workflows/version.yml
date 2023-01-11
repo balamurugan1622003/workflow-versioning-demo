@@ -32,10 +32,12 @@ jobs:
           split=($(echo ${{ vars.VERSION }} | tr "." "\n"))
           split[0]=`expr ${split[0]} + 1`
           updated_version="${split[0]}.${split[1]}"
+          echo $updated_version
           echo ${{ vars.VERSION }}
       
       - name: Update version of workflow run
         run: |
+          echo $updated_version
           curl \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
