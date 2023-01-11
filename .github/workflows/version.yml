@@ -50,7 +50,7 @@ jobs:
             -d '{"name":"VERSION","value":"'${{ env.updated_version }}'"}'
   
   if_pushed:
-    if: ${{ (github.event_name == 'push') && (!github.event.pull_request.merged)}}
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
