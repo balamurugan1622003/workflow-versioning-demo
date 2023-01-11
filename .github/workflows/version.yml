@@ -35,7 +35,7 @@ jobs:
           curl \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer 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"\
+            -H "Authorization: Bearer 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"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repositories/86852871/environments//variables/version \
             -d '{"name":"balamurugan1622003","value": "1.0"}'    
