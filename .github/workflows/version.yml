@@ -7,6 +7,9 @@ on:
       - release
     types: [closed]
 
+env:
+  run_name: toBeUpdatedDuringWorkflowRun
+
 jobs:
   release_to_main:
     if: ${{ (github.event.pull_request.merged) && (github.head_ref == 'release') && (github.base_ref == 'main') }}
