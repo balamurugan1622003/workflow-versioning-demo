@@ -33,15 +33,16 @@ jobs:
           split[0]=`expr ${split[0]} + 1`
           updated_version="${split[0]}.${split[1]}"
           echo $updated_version
+          echo "updated_version=$updated_version" >> $GITHUB_ENV
           echo ${{ vars.VERSION }}
       
       - name: Update version of workflow run
         run: |
-          echo $updated_version
+          echo $env.updated_version
           curl \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.API_KEY_GITHUB }}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/balamurugan1622003/workflow-versioning-demo/actions/variables/version \
-            -d '{"name":"VERSION","value":"'$updated_version'"}'  
+            -d '{"name":"VERSION","value":"'$env.updated_version'"}'  
