@@ -27,6 +27,7 @@ jobs:
       
       - name: Split major and minor version numbers
         run: split=($(echo $env.WORKFLOW_VERSION | tr "." "\n"))
+             echo $env.WORKFLOW_VERSION
       
       - name: Update version of workflow run
         run: echo "WORKFLOW_VERSION=$(echo `expr ${split[0]} + 1`)" >> $GITHUB_ENV
