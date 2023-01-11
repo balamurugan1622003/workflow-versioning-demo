@@ -7,8 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   # push:
     # branches: [ "main" ]
-  # pull_request:
-    # branches: [ "main" ]
+  pull_request:
+    branches: [ "main", "release" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,18 +16,19 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  if_merged:
+    if: ${{ (github.event.pull_request.merged) && (github.head_ref == "dev") }}
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Split major and minor version numbers
+      - name: Split major - minor version numbers and update major version
         run: |
           split=($(echo ${{ vars.VERSION }} | tr "." "\n"))
+          split[0]=`expr ${split[0]} + 1`
+          updated_version="${split[0]}.${split[1]}"
           echo ${{ vars.VERSION }}
       
       - name: Update version of workflow run
@@ -38,4 +39,4 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.API_KEY_GITHUB }}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/balamurugan1622003/workflow-versioning-demo/actions/variables/version \
-            -d '{"name":"VERSION","value":"2.0"}'  
+            -d '{"name":"VERSION","value":$updated_version}'  
