@@ -118,7 +118,7 @@ jobs:
       - name: Set run name
         run: |
           branch=${{ github.base_ref }}
-          echo "run_name=On branch," $branch " : Version," $updated_version >> $GITHUB_ENV
+          run_name=On branch," $branch " : Version," $updated_version
     
   
-run-name: ${{ env.run_name }}
+run-name: ${{ run_name }}
