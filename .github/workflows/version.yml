@@ -7,9 +7,6 @@ on:
       - release
     types: [closed]
 
-env:
-  run_name: toBeUpdatedDuringWorkflowRun
-
 jobs:
   release_to_main:
     if: ${{ (github.event.pull_request.merged) && (github.head_ref == 'release') && (github.base_ref == 'main') }}
@@ -118,7 +115,7 @@ jobs:
       - name: Set run name
         run: |
           branch=${{ github.base_ref }}
-          run_name=On branch," $branch " : Version," $updated_version
+          echo "run_name=On branch," $branch " : Version," $updated_version >> $GITHUB_ENV
     
   
-run-name: ${{ run_name }}
+run-name: customRunName
