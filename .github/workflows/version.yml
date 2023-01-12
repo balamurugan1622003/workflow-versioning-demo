@@ -30,6 +30,7 @@ jobs:
           echo ${{ env.updated_version }}
           branch="On branch, ${{ github.base_ref }}"
           run_name="$branch : Version, ${{ env.updated_version }}"
+          echo $run_name >> $GITHUB_STEP_SUMMARY
           echo $run_name
           curl \
             -X PATCH \
@@ -47,7 +48,7 @@ jobs:
             -d '{"name":"MAIN_WORKFLOW_VERSION","value":"'${{ env.updated_version }}'"}'
   
   others_to_main:
-    if: ${{ (github.event.pull_request.merged) && (github.head_ref != 'release') && (github.base_ref == 'main')}}
+    if: ${{ (github.event.pull_request.merged) && (github.head_ref != 'release') && (github.base_ref == 'main') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -65,6 +66,7 @@ jobs:
           echo ${{ env.updated_version }}
           branch="On branch, ${{ github.base_ref }}"
           run_name="$branch : Version, ${{ env.updated_version }}"
+          echo $run_name >> $GITHUB_STEP_SUMMARY
           echo $run_name
           curl \
             -X PATCH \
@@ -100,6 +102,7 @@ jobs:
           echo ${{ env.updated_version }}
           branch="On branch, ${{ github.base_ref }}"
           run_name="$branch : Version, ${{ env.updated_version }}"
+          echo $run_name >> $GITHUB_STEP_SUMMARY
           echo $run_name
           curl \
             -X PATCH \
@@ -135,6 +138,7 @@ jobs:
           echo ${{ env.updated_version }}
           branch="On branch, ${{ github.base_ref }}"
           run_name="$branch : Version, ${{ env.updated_version }}"
+          echo $run_name >> $GITHUB_STEP_SUMMARY
           echo $run_name
           curl \
             -X PATCH \
