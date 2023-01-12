@@ -117,12 +117,12 @@ jobs:
       
       - name: Set branch
         run: |
-          branch="${{ github.base_ref }}"
+          export branch=${{ github.base_ref }}
           echo $branch
       
       - name: Set run name
         run: |
-          name="On branch, ${branch} : Version, ${updated_version}"
+          export name="On branch, ${branch} : Version, ${updated_version}"
           echo $name
           curl \
             -X PATCH \
