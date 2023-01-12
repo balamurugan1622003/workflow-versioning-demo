@@ -123,14 +123,14 @@ jobs:
           echo $version
           
           echo "workflowRunName=${branch} : ${version}" >> $GITHUB_ENV
-          echo $workflowRunName
+          echo ${{ env.workflowRunName }}
           curl \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.API_KEY_GITHUB }}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/balamurugan1622003/workflow-versioning-demo/actions/variables/run_name \
-            -d '{"name":"RUN_NAME","value": "'${{ workflowRunName }}'"}'
+            -d '{"name":"RUN_NAME","value": "'${{ env.workflowRunName }}'"}'
     
 
 run-name: ${{ vars.run_name }}
