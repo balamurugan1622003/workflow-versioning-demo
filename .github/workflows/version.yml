@@ -8,7 +8,7 @@ on:
     types: [closed]
     
 env:
-  global_updated_version: ""
+  updated_version: ""
 
 jobs:
   release_to_main:
@@ -53,7 +53,6 @@ jobs:
       - name: Update version of workflow run
         run: |
           echo ${{ env.updated_version }}
-          global_updated_version=${{ env.updated_version }}
           curl \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
@@ -122,7 +121,7 @@ jobs:
       - name: Set branch
         run: |
           branch="On branch, ${{ github.base_ref }}"
-          version="Version, ${{ env.global_updated_version }}"
+          version="Version, ${{ env.updated_version }}"
           echo $branch
           echo $version
           
