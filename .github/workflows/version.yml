@@ -110,6 +110,7 @@ jobs:
     
   set_run_name:
     needs: [release_to_main , others_to_main, dev_to_release, others_to_release]
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
