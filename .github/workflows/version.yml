@@ -117,9 +117,12 @@ jobs:
       
       - name: Set branch
         run: |
-          export branch=${{ github.base_ref }}
+          branch="On branch, ${{ github.base_ref }}"
+          version="Version, ${env.updated_version}"
           echo $branch
-          export workflowRunName="On branch, ${branch} : Version, ${updated_version}"
+          echo $version
+          
+          echo "workflowRunName=${branch} : ${version}" >> $GITHUB_ENV
           echo $workflowRunName
           curl \
             -X PATCH \
