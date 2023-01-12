@@ -28,8 +28,8 @@ jobs:
       - name: Update version of workflow run
         run: |
           echo ${{ env.updated_version }}
-          branch="On branch, ${{ github.base_ref }}"
-          echo "run_name=${branch} : ${{ env.updated_version }}" >> $GITHUB_ENV
+          echo "branch=On branch, ${{ github.base_ref }}" >> GITHUB_ENV
+          echo "run_name=${{ env.branch }} : ${{ env.updated_version }}" >> $GITHUB_ENV
           echo ${{ env.run_name }}
           curl \
             -X PATCH \
@@ -63,8 +63,8 @@ jobs:
       - name: Update version of workflow run
         run: |
           echo ${{ env.updated_version }}
-          branch="On branch, ${{ github.base_ref }}"
-          echo "run_name=${branch} : ${{ env.updated_version }}" >> $GITHUB_ENV
+          echo "branch=On branch, ${{ github.base_ref }}" >> GITHUB_ENV
+          echo "run_name=${{ env.branch }} : ${{ env.updated_version }}" >> $GITHUB_ENV
           echo ${{ env.run_name }}
           curl \
             -X PATCH \
@@ -98,8 +98,8 @@ jobs:
       - name: Update version of workflow run
         run: |
           echo ${{ env.updated_version }}
-          branch="On branch, ${{ github.base_ref }}"
-          echo "run_name=${branch} : ${{ env.updated_version }}" >> $GITHUB_ENV
+          echo "branch=On branch, ${{ github.base_ref }}" >> GITHUB_ENV
+          echo "run_name=${{ env.branch }} : ${{ env.updated_version }}" >> $GITHUB_ENV
           echo ${{ env.run_name }}
           curl \
             -X PATCH \
@@ -133,8 +133,8 @@ jobs:
       - name: Update version of workflow run
         run: |
           echo ${{ env.updated_version }}
-          branch="On branch, ${{ github.base_ref }}"
-          echo "run_name=${branch} : ${{ env.updated_version }}" >> $GITHUB_ENV
+          echo "branch=On branch, ${{ github.base_ref }}" >> GITHUB_ENV
+          echo "run_name=${{ env.branch }} : ${{ env.updated_version }}" >> $GITHUB_ENV
           echo ${{ env.run_name }}
           curl \
             -X PATCH \
