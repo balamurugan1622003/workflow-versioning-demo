@@ -117,7 +117,7 @@ jobs:
       - name: Set run name
         run: |
           branch=${{ github.base_ref }}
-          run_name=On branch, ${branch} : Version, ${updated_version}
+          run_name="On branch, ${branch} : Version, ${updated_version}"
           echo $run_name
           curl \
             -X PATCH \
