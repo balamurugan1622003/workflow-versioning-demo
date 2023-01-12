@@ -117,14 +117,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      #############################
-      - name: release_to_main successful
-        if: steps.build.outcome == 'success'
-      
       - name: Set branch
         run: |
+          if (${{ needs.release_to_main.outputs.updated_version }})
+          then
+              version="Version, ${{ needs.release_to_main.outputs.updated_version }}"
+            elif (${{ needs.others_to_main.outputs.updated_version }})
+          then
+              version="Version, ${{ needs.others_to_main.outputs.updated_version }}"
+            elif (${{ needs.dev_to_release.outputs.updated_version }})
+          then
+              version="Version, ${{ needs.dev_to_release.outputs.updated_version }}"
+          else
+              version="Version, ${{ needs.others_to_release.outputs.updated_version }}"
+          fi
           branch="On branch, ${{ github.base_ref }}"
-          version="Version, ${{ env.updated_version }}"
           echo $branch
           echo $version
           
