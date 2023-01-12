@@ -64,7 +64,7 @@ jobs:
         run: |
           echo ${{ env.updated_version }}
           branch="On branch, ${{ github.base_ref }}"
-          run_name=$branch : Version, ${{ env.updated_version }}"
+          run_name="$branch : Version, ${{ env.updated_version }}"
           echo $run_name
           curl \
             -X PATCH \
