@@ -118,6 +118,7 @@ jobs:
         run: |
           branch=${{ github.base_ref }}
           echo "run_name=On branch," $branch " : Version," $updated_version >> $GITHUB_ENV
+          echo ${{ env.run_name }}
           curl \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
