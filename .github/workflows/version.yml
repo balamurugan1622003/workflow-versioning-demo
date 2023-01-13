@@ -156,4 +156,4 @@ jobs:
             -d '{"name":"RELEASE_WORKFLOW_VERSION","value":"'${{ env.updated_version }}'"}'
     
 
-run-name: ${{ vars.run_name }}
+# run-name: ${{ vars.run_name }}
